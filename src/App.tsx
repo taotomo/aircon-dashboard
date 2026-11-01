@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { devices } from "./devices";
+import { summary } from "./summary";
 
 function App() {
   const [aiEnabled, setAiEnabled] = useState(false);
+  const kpi = aiEnabled ? summary.ai : summary.normal;
 
   return (
     <div>
@@ -16,22 +18,22 @@ function App() {
       </button>
       <div>
         <p>消費電力</p>
-        <p>1,500kwh</p>
+        <p>{kpi.totalKwh} kWh</p>
       </div>
 
       <div>
         <p>削減率</p>
-        <p>20%</p>
+        <p>{kpi.reductionRate} %</p>
       </div>
 
       <div>
         <p>CO2削減</p>
-        <p>200kg</p>
+        <p>{kpi.co2Kg} kg</p>
       </div>
 
       <div>
         <p>コスト削減</p>
-        <p>1,500</p>
+        <p>{kpi.costYen} 円</p>
       </div>
 
       <h2>機器一覧</h2>
