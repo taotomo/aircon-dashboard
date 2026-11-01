@@ -45,17 +45,21 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {/*アロー関数使って、devices.tsから一台ずつ取り出して<p>に変換する*/}
-          {devices.map((device) => (
-            <tr key={device.id} >
-              <td>
-                {device.floor} {device.name}
-              </td>
-              <td>{device.setTemp === null ? "-" : device.setTemp}</td>
-              <td>{device.roomTemp}</td>
-              <td>{device.status}</td>
-            </tr>
-          ))}
+          {/* devices から1台ずつ取り出して、AI制御のON/OFFで設定温度を切り替えて <tr> にする */}
+          {devices.map((device) => {
+            const temp = aiEnabled ? device.aiSetTemp : device.setTemp;
+
+            return (
+              <tr key={device.id} >
+                <td>
+                  {device.floor} {device.name}
+                </td>
+                <td>{temp === null ? "-" : temp}</td>
+                <td>{device.roomTemp}</td>
+                <td>{device.status}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
