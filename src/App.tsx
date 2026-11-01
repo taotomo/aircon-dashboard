@@ -1,35 +1,40 @@
+import { useState } from "react";
 import { devices } from "./devices";
 
 function App() {
+  const [aiEnabled, setAiEnabled] = useState(false);
+
   return (
     <div>
       <h1>空調エネルギー</h1>
+
+      <button onClick={() => {
+          setAiEnabled(!aiEnabled);
+        }}
+      >
+        AI制御: {aiEnabled ? "ON" : "OFF"}
+      </button>
       <div>
         <p>消費電力</p>
-
         <p>1,500kwh</p>
       </div>
 
       <div>
         <p>削減率</p>
-
         <p>20%</p>
       </div>
 
       <div>
         <p>CO2削減</p>
-
         <p>200kg</p>
       </div>
 
       <div>
         <p>コスト削減</p>
-
         <p>1,500</p>
       </div>
 
       <h2>機器一覧</h2>
-
       <table>
         <thead>
           <tr>
